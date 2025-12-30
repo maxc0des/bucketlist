@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bucketlist - signup</title>
+</head>
+<body>
+    <div>
+        <input id="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Passwort">
+        <input id="invite" placeholder="Invite-Code" style="display: none;">
+        <button id="signup-btn" onclick="signup()" style="display: none;">Registrieren</button>
+        <button id="login-btn" onclick="login()">Anmelden</button>
+        <input type="checkbox" id="signup" onclick="toggleSignup()">Sign up new account</input>
+    </div>
+    
+    <p id="error"></p>
+
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+    function toggleSignup() {
+        const signupCheckbox = document.getElementById('signup');
+        const inviteInput = document.getElementById('invite');
+        const signupBtn = document.getElementById('signup-btn');    
+        const loginBtn = document.getElementById('login-btn');
+        inviteInput.style.display = signupCheckbox.checked ? 'inline' : 'none';;
+        signupBtn.style.display = signupCheckbox.checked ? 'inline' : 'none';
+        loginBtn.style.display = signupCheckbox.checked ? 'none' : 'inline';
+    }
+    </script>
+</body>
+</html>
