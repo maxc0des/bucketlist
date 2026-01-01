@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bucketlist - feed</title>
+    <title>bucketlist - friends</title>
 </head>
 <body>
     <div id="nav"></div>
 
-    <a href="friends.html" class="tab">
-      <i class="fa-solid fa-user-group"></i>
-    </a>
+    <input type="text" id="friend-username" placeholder="friend username">
+    <button onclick="addFriend()">add friend</button>
 
-    <a href="settings.html" class="tab">
-      <i class="fa-solid fa-gear"></i>
-    </a>
-
-    <div id="feed"></div>
+    <ul id="friends-list"></ul>
 
 
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
     <script src="js/feed.js"></script>
     <script src="js/friends.js"></script>
+    <script>renderFriends();</script>
 
     <script>
     fetch("nav.html")

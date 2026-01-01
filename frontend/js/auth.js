@@ -32,7 +32,8 @@ async function signup() {
       });
 
   }
-  window.location.href = "profile.html";
+  alert("registration successful! please complete your profile.");
+  window.location.href = "settings.html";
 }
 
 async function consumeInvite(code) {

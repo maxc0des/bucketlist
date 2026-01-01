@@ -6,15 +6,27 @@
     <title>bucketlist</title>
 </head>
 <body>
+    <div id="nav"></div>
+
     <div id="header" class="header">
         bucketlist 🪣
     </div>
     <div id="signin" class="signin">
         <a href="signup.html">Sign In</a>
     </div>
-    <div id="nav" class="nav">
-        <a href="feed.html">Feed</a>
-        <a href="bucketlist.html">Bucketlist</a>
-    </div>
+
+    <script>
+    fetch("nav.html")
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById("nav").innerHTML = html;
+
+        const script = document.createElement("script");
+        script.src = "js/nav.js";
+        document.body.appendChild(script);
+      });
+  </script>
+
+  <link rel="stylesheet" href="style/nav.css">
 </body>
 </html>
