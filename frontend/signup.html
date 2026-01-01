@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bucketlist - signup</title>
+    <link rel="stylesheet" href="style/signup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div>
+    <div class="signup-container">
         <input id="email" placeholder="Email">
         <input id="password" type="password" placeholder="Passwort">
         <input id="invite" placeholder="Invite-Code" style="display: none;">
         <button id="signup-btn" onclick="signup()" style="display: none;">Registrieren</button>
         <button id="login-btn" onclick="login()">Anmelden</button>
-        <input type="checkbox" id="signup" onclick="toggleSignup()">Sign up new account</input>
+        <label>
+            <input type="checkbox" id="signup" onclick="toggleSignup()"> Sign up new account
+        </label>
+        <p>wir nutzen keine coockies und speichern ausßschließlich deine login-daten, bucketlist, posts, freundesliste und dein profil. diese daten werden an keine dritten weitergegeben und können auf anfrage sofort gelöscht werden. indem du dich registrierst, bestätigst du, dass du dies in kenntniss genommen hast und stimmst diesem zu.</p>
     </div>
-    
     <p id="error"></p>
 
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>

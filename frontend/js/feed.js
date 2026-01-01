@@ -82,12 +82,6 @@ async function renderFeed(posts) {
 
     else {
       // normaler Post
-      if (post.content) {
-        const p = document.createElement("p");
-        p.textContent = post.content;
-        card.appendChild(p);
-      }
-
       if (post.image_paths?.length > 0) {
         for (const path of post.image_paths) {
           const { data, error } = await supabaseClient
@@ -106,11 +100,23 @@ async function renderFeed(posts) {
           card.appendChild(img);
         }
       }
+
+      if (post.content) {
+        const p = document.createElement("p");
+        p.textContent = post.content;
+        card.appendChild(p);
+      }
     }
 
     feed.appendChild(card);
+
+    // Add separator line after each card
+    const separator = document.createElement("hr");
+    separator.style.border = "none";
+    separator.style.borderTop = "1px solid #ddd";
+    separator.style.margin = "10px 0";
+    feed.appendChild(separator);
   }
 }
-
 
 loadFeed();

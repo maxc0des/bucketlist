@@ -56,6 +56,13 @@ async function renderBucketList(items) {
       btn.onclick = () => location.href = `post.html?id=${item.id}`;
       li.appendChild(btn);
       pendingEl.appendChild(li);
+
+      // Add separator
+      const separator = document.createElement("hr");
+      separator.style.border = "none";
+      separator.style.borderTop = "1px solid #ddd";
+      separator.style.margin = "10px 0";
+      pendingEl.appendChild(separator);
     } else {
       // Post-ID auslesen
       const postId = item.post_id;
@@ -79,26 +86,36 @@ async function renderBucketList(items) {
       }
 
       // Post-Daten anzeigen (z.B. Content und Bilder)
-      li.innerHTML = `<strong>${item.title}</strong><br>${post.content}`;
+      li.innerHTML = `<strong>${item.title}</strong>`;
       if (post.image_paths && post.image_paths.length > 0) {
-      for (const path of post.image_paths) {
-        const { data, error } = await supabaseClient
-          .storage
-          .from("post-images")
-          .createSignedUrl(path, 60 * 10);
+        for (const path of post.image_paths) {
+          const { data, error } = await supabaseClient
+            .storage
+            .from("post-images")
+            .createSignedUrl(path, 60 * 10);
 
-        if (error) {
-          console.error(error);
-          continue;
-        }
+          if (error) {
+            console.error(error);
+            continue;
+          }
 
-        const img = document.createElement("img");
-        img.src = data.signedUrl;
-        img.style.maxWidth = "200px";
-        li.appendChild(img);
+          const img = document.createElement("img");
+          img.src = data.signedUrl;
+          img.style.maxWidth = "200px";
+          li.appendChild(img);
         }
       }
+      const contentP = document.createElement("p");
+      contentP.textContent = post.content;
+      li.appendChild(contentP);
       doneEl.appendChild(li);
+
+      // Add separator
+      const separator = document.createElement("hr");
+      separator.style.border = "none";
+      separator.style.borderTop = "1px solid #ddd";
+      separator.style.margin = "10px 0";
+      doneEl.appendChild(separator);
     }
   }
 }

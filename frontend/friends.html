@@ -1,17 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bucketlist - friends</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bucketlist - friends</title>
+  <link rel="stylesheet" href="style/friends.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="nav"></div>
 
-    <input type="text" id="friend-username" placeholder="friend username">
-    <button onclick="addFriend()">add friend</button>
+    <div class="friends-container">
+        <input type="text" id="friend-username" placeholder="friend username">
+        <button onclick="addFriend()">add friend</button>
 
-    <ul id="friends-list"></ul>
+        <ul id="friends-list"></ul>
+    </div>
 
 
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>

@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bucketlist - feed</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bucketlist - feed</title>
+  <link rel="stylesheet" href="style/feed.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="nav"></div>
+    <div class="spacer">
+      <a href="friends.html" class="tab">
+        <i class="fa-solid fa-user-group"></i>
+      </a>
 
-    <a href="friends.html" class="tab">
-      <i class="fa-solid fa-user-group"></i>
-    </a>
+      <a href="settings.html" class="tab">
+        <i class="fa-solid fa-gear"></i>
+      </a>
+    </div>
 
-    <a href="settings.html" class="tab">
-      <i class="fa-solid fa-gear"></i>
-    </a>
-
-    <div id="feed"></div>
+    <div id="feed" class="feed"></div>
 
 
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>

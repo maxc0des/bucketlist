@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>bucketlist - bucketlist</title>
+  <link rel="stylesheet" href="style/bucketlist.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="nav"></div>
 
-  <div>
+  <div class="add-item">
     <input id="title" placeholder="Titel">
     <input id="description" placeholder="Beschreibung">
     <button onclick="addBucketItem(
@@ -20,8 +24,8 @@
   </div>
   
 
-  <ul id="pending-list"></ul>
-  <ul id="done-list"></ul>
+  <ul id="pending-list" class="pending-list"></ul>
+  <ul id="done-list" class="done-list"></ul>
 
 
   <script src="https://unpkg.com/@supabase/supabase-js@2"></script>

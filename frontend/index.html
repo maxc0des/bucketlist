@@ -1,32 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bucketlist</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bucketlist</title>
+  <link rel="stylesheet" href="style/index.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="nav"></div>
-
-    <div id="header" class="header">
-        bucketlist 🪣
+    <div id="content" class="content">
+        <h2>Welcome to bucketlist! 🪣</h2>
+        <p>Your personal bucket list manager.</p>
+        <p>This project is open source under <a href="https://github.com/maxc0des/bucketlist">github.com/maxc0des/bucketlist</a></p>
     </div>
+
     <div id="signin" class="signin">
         <a href="signup.html">Sign In</a>
     </div>
-
-    <script>
-    fetch("nav.html")
-      .then(res => res.text())
-      .then(html => {
-        document.getElementById("nav").innerHTML = html;
-
-        const script = document.createElement("script");
-        script.src = "js/nav.js";
-        document.body.appendChild(script);
-      });
-  </script>
-
-  <link rel="stylesheet" href="style/nav.css">
 </body>
 </html>

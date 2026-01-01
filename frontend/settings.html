@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>bucketlist - profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bucketlist - profile</title>
+  <link rel="stylesheet" href="style/settings.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="nav"></div>
 
-    <h2>profil bearbeiten</h2>
-    <input id="username" placeholder="Username">
-    <textarea id="bio" placeholder="Bio"></textarea>
-    <button onclick="saveProfile()">Speichern</button>
-    <p id="error-message" style="color: red;"></p>
+    <div class="settings-container">
+        <h2>profil bearbeiten</h2>
+        <input id="username" placeholder="Username">
+        <textarea id="bio" placeholder="Bio"></textarea>
+        <button onclick="saveProfile()">Speichern</button>
+        <p id="error-message" style="color: red;"></p>
 
-    <button onclick="logout()">Abmelden</button>
+        <button onclick="logout()">Abmelden</button>
+    </div>
 
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <script src="js/supabase.js"></script>
