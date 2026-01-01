@@ -3,6 +3,7 @@ body {
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
+    padding-bottom: calc(70px + env(safe-area-inset-bottom));
 }
 
 
@@ -33,6 +34,8 @@ body {
     padding: 15px;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .post-header {
@@ -52,4 +55,33 @@ body {
 .post p {
     margin: 0;
     line-height: 1.4;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .feed {
+        margin-top: 60px;
+        padding: 0;
+        max-width: none;
+    }
+
+    .post {
+        padding: 10px;
+        border-radius: 6px;
+    }
+
+    .post-header {
+        font-size: 1em;
+    }
+
+    .spacer {
+        top: 5px;
+        right: 5px;
+        gap: 5px;
+    }
 }

@@ -3,6 +3,7 @@ body {
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
+    padding-bottom: calc(70px + env(safe-area-inset-bottom));
 }
 
 .friends-container {
@@ -52,4 +53,29 @@ button:hover {
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .friends-container {
+        margin: 80px 0 20px;
+        padding: 15px;
+        max-width: none;
+    }
+
+    #friends-list li {
+        padding: 10px;
+        border-radius: 6px;
+    }
+
+    input {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
 }

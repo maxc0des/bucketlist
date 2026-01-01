@@ -3,6 +3,7 @@ body {
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
+    padding-bottom: calc(70px + env(safe-area-inset-bottom));
 }
 
 input{
@@ -49,6 +50,8 @@ button{
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     width: 100%;
     text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .done-list li strong {
@@ -64,4 +67,37 @@ button{
     height: auto;
     border-radius: 6px;
     margin-bottom: 10px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .add-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 5px;
+        margin: 10px 0;
+    }
+
+    .pending-list, .done-list {
+        max-width: none;
+        padding: 0;
+    }
+
+    .pending-list li, .done-list li {
+        padding: 10px;
+        border-radius: 6px;
+    }
+
+    input {
+        margin: 5px 0;
+    }
+
+    button {
+        margin: 5px 0;
+    }
 }
