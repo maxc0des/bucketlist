@@ -30,6 +30,20 @@ button{
     margin: 20px 0;
 }
 
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
 .pending-list, .done-list {
     display: flex;
     flex-direction: column;
@@ -82,6 +96,11 @@ button{
         gap: 5px;
         margin: 10px 0;
         padding: 0 10px;
+    }
+
+    .user-info {
+        max-width: none;
+        margin: 20px 10px;
     }
 
     .pending-list, .done-list {

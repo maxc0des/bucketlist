@@ -93,11 +93,8 @@ async function renderFriends() {
     const li = document.createElement("li");
     li.textContent = profile.username;
 
-    const btn = document.createElement("button");
-    btn.textContent = "Remove";
-    btn.onclick = () => removeFriend(profile.id);
-
-    li.appendChild(btn);
+    
+    li.onclick = () => {window.location.href = `user.html?id=${profile.id}`;}
     friendsList.appendChild(li);
   });
 }

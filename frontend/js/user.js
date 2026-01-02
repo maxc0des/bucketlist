@@ -1,45 +1,3 @@
-// Eintrag laden
-async function loadBucketItems() {
-  //get current user id
-  const { data: { user } } = await supabaseClient.auth.getUser();
-  //get users bucketlist
-  const { data, error } = await supabaseClient
-    .from("bucket_items")
-    .select("*")
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false });
-
-  if (error) return console.error(error);
-  renderBucketList(data);
-}
-
-async function addBucketItem(title) {
-  //add item
-  const { data: { user } } = await supabaseClient.auth.getUser();
-
-  const { data: item, error } = await supabaseClient
-    .from("bucket_items")
-    .insert({
-      user_id: user.id,
-      title,
-      completed: false
-    })
-    .select()
-    .single();
-
-  if (error) return console.error(error);
-  //create post about it
-  await supabaseClient.from("posts").insert({
-    user_id: user.id,
-    type: "bucket_add",
-    bucket_item_id: item.id,
-    content: `🆕 Hat "${title}" zur Bucketlist hinzugefügt`
-  });
-
-  loadBucketItems();
-}
-
-
 async function renderBucketList(items) {
   const pendingEl = document.getElementById("pending-list");
   const doneEl = document.getElementById("done-list");
@@ -53,10 +11,6 @@ async function renderBucketList(items) {
     li.textContent = `${item.title} ${item.completed ? "✅" : ""}`;
 
     if (!item.completed) {
-      const btn = document.createElement("button");
-      btn.textContent = "Abhaken";
-      btn.onclick = () => location.href = `post.html?id=${item.id}`;
-      li.appendChild(btn);
       pendingEl.appendChild(li);
 
       // Add separator
@@ -121,3 +75,41 @@ async function renderBucketList(items) {
     }
   }
 }
+
+async function loadUserItems() {
+    const params = new URLSearchParams(window.location.search);
+    const userId = params.get("id");
+    const { data, error } = await supabaseClient
+        .from("bucket_items")
+        .select("*")
+        .eq("user_id", userId)
+        .order("created_at", { ascending: false });
+
+    if (error) return console.error(error);
+    renderBucketList(data);
+}
+
+
+async function loadProfile() {
+  const params = new URLSearchParams(window.location.search);
+  const profileId = params.get("id");
+  if (!profileId) return;
+
+  // Profil
+  const { data: profile, error: profileError } = await supabaseClient
+    .from("profiles")
+    .select("id, username, bio")
+    .eq("id", profileId)
+    .single();
+
+  if (profileError) {
+    console.error(profileError);
+    alert("Profil nicht verfügbar");
+    return;
+  }
+
+  document.getElementById("username").textContent = profile.username;
+  document.getElementById("bio").textContent = profile.bio ?? "";
+}
+
+loadProfile();
