@@ -72,13 +72,14 @@ button:hover {
 @media (max-width: 768px) {
     body {
         padding: 10px;
-        padding-bottom: calc(80px + env(safe-area-inset-bottom));
+        padding-bottom: calc(80px + env(safe-area-inset-bottom) + 10px);
         height: auto;
         min-height: 100vh;
     }
 
     .signup-container {
         max-width: none;
+        width: calc(100% - 20px);
         padding: 15px;
     }
 

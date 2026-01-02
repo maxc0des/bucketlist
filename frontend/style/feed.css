@@ -19,7 +19,7 @@ body {
     margin-top: 60px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -27,12 +27,12 @@ body {
 
 .post {
     text-align: left;
-    width: 100%;
+    width: 90%;
     background: #fff;
     border: 1px solid #e1e1e1;
     border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
+    padding: 20px;
+    margin: 0 auto 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -60,28 +60,11 @@ body {
 /* Mobile Styles */
 @media (max-width: 768px) {
     body {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    .feed {
-        margin-top: 60px;
-        padding: 0;
-        max-width: none;
-    }
-
-    .post {
         padding: 10px;
-        border-radius: 6px;
+        padding-bottom: calc(80px + env(safe-area-inset-bottom) + 10px);
     }
 
-    .post-header {
-        font-size: 1em;
-    }
-
-    .spacer {
-        top: 5px;
-        right: 5px;
-        gap: 5px;
+    .feed{
+        width: calc(100% - 20px);
     }
 }
