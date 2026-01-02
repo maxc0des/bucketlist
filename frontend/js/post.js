@@ -20,6 +20,18 @@ async function uploadPostImages(files, postId, userId) {
 
   return paths;
 }
+async function getItemById(itemId) {
+  const { data: item, error } = await supabaseClient
+    .from("bucket_items")
+    .select("*")
+    .eq("id", itemId)
+    .single();
+  if (error) {
+    console.error(error);
+    return null;
+  }
+  return item;
+}
 
 async function createPostWithImages(bucketItemId, text, files) {
   console.log("FILES:", files, files?.length);
@@ -52,14 +64,17 @@ async function createPostWithImages(bucketItemId, text, files) {
 }
 
 async function post() {
-  const captionEl = document.getElementById("caption");
-  const fileEl = document.getElementById("images");
-
-  const text = captionEl.value;
-  const files = fileEl.files;
+  
 
   const params = new URLSearchParams(window.location.search);
   const bucketItemId = params.get("id");
+
+  const captionEl = document.getElementById("caption");
+  const fileEl = document.getElementById("images");
+
+  const item = await getItemById(bucketItemId);
+  const text = `✅ "${item.title}": ${captionEl.value}`;
+  const files = fileEl.files;
 
   if (!bucketItemId || text.length === 0 || files.length === 0) {
     alert("fehlendes parameter");
