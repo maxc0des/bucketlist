@@ -32,8 +32,7 @@ async function signup() {
       });
 
   }
-  alert("registration successful! please complete your profile.");
-  window.location.href = "settings.html";
+  alert("registration successful! verify your email and log in.");
 }
 
 async function consumeInvite(code) {
@@ -61,6 +60,18 @@ async function login() {
   });
 
   if (error) alert(error.message);
+  //check if first login (no profile)
+  const user = supabaseClient.auth.getUser();
+  const { data: profileData, error: profileError } = await supabaseClient
+    .from("profiles")
+    .select("*")
+    .eq("id", (await user).data.user.id);
+  if (profileError) {
+    console.error("Profile fetch error:", profileError);
+    alert("An error occurred while fetching profile data.");
+    window.location.href = "settings.html";
+  }
+  if (profileData.length === 0) window.location.href = "settings.html";
   else window.location.href = "feed.html";
 }
 

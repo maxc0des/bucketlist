@@ -52,9 +52,12 @@ async function saveProfile() {
     .single();
 
   if (profileError) {
-    errorEl.textContent = "Fehler beim Laden des Profils.";
-    return console.error(profileError);
-    
+    //profil neu erstellen falls nicht vorhanden
+      await supabaseClient.from("profiles").insert({
+        id: user.id,
+        username: new_username,
+        bio: new_bio
+      });
   }
 
   const current_username = currentProfile.username;
