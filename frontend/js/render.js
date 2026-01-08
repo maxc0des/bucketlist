@@ -1,3 +1,5 @@
+import { toggleLike } from "./interact.js";
+
 export async function renderPost(post) {
   const card = document.createElement("div");
   card.className = "post";
@@ -46,6 +48,35 @@ export async function renderPost(post) {
       card.appendChild(p);
     }
   }
+
+  //like button
+  const likeBtn = document.createElement("button");
+  likeBtn.className = "like-btn";
+  likeBtn.dataset.postId = post.id;
+  likeBtn.innerHTML = `❤️ <span class="like-count">${post.like_count || 0}</span>`;
+  likeBtn.onclick = async (e) => {
+    if (!e.target.closest(".like-btn")) return;
+      const btn = e.target.closest(".like-btn");
+      const postId = btn.dataset.postId;
+
+      const {
+        data: { user },
+      } = await supabaseClient.auth.getUser();
+
+      if (!user) return alert("Bitte einloggen");
+
+      const liked = await toggleLike(postId, user.id);
+
+      btn.classList.toggle("liked", liked);
+
+      // update like count UI
+      const countSpan = btn.querySelector(".like-count");
+      if (countSpan) {
+        const current = parseInt(countSpan.textContent || "0", 10);
+        countSpan.textContent = String(liked ? current + 1 : Math.max(0, current - 1));
+      }
+  };
+  card.appendChild(likeBtn);
 
   return card;
 }

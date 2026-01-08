@@ -57,6 +57,27 @@ body {
     line-height: 1.4;
 }
 
+/* Like button styles (match profile UI) */
+.like-btn {
+    background: transparent;
+    border: 1px solid #eee;
+    padding: 6px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #444;
+}
+.like-btn.liked {
+    background: #ffebee;
+    border-color: #ffccd5;
+    color: #e53935;
+}
+.like-count {
+    font-weight: 600;
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
     body {

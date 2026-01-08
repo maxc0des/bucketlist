@@ -1,3 +1,5 @@
+import { renderPost } from "./render.js";
+
 async function renderBucketList(items) {
   const pendingEl = document.getElementById("pending-list");
   const doneEl = document.getElementById("done-list");
@@ -5,7 +7,18 @@ async function renderBucketList(items) {
 
   pendingEl.innerHTML = "";
   doneEl.innerHTML = "";
-
+  // fetch profile username once for posts
+  const params = new URLSearchParams(window.location.search);
+  const profileId = params.get("id");
+  let profile = null;
+  if (profileId) {
+    const { data: profData, error: profErr } = await supabaseClient
+      .from("profiles")
+      .select("username")
+      .eq("id", profileId)
+      .single();
+    if (!profErr) profile = profData?.data || profData;
+  }
   for (const item of items) {
     const li = document.createElement("li");
     li.textContent = `${item.title} ${item.completed ? "✅" : ""}`;
@@ -41,30 +54,13 @@ async function renderBucketList(items) {
         continue;
       }
 
-      // Post-Daten anzeigen (z.B. Content und Bilder)
-      li.innerHTML = `<strong>${item.title}</strong>`;
-      if (post.image_paths && post.image_paths.length > 0) {
-        for (const path of post.image_paths) {
-          const { data, error } = await supabaseClient
-            .storage
-            .from("post-images")
-            .createSignedUrl(path, 60 * 10);
-
-          if (error) {
-            console.error(error);
-            continue;
-          }
-
-          const img = document.createElement("img");
-          img.src = data.signedUrl;
-          img.style.maxWidth = "200px";
-          li.appendChild(img);
-        }
-      }
-      const contentP = document.createElement("p");
-      contentP.textContent = post.content;
-      li.appendChild(contentP);
-      doneEl.appendChild(li);
+      // Use renderPost to get consistent post UI (includes like button)
+      post.username = profile?.username || "";
+      const card = await renderPost(post);
+      // wrap card in li to keep list semantics
+      const wrapper = document.createElement("li");
+      wrapper.appendChild(card);
+      doneEl.appendChild(wrapper);
 
       // Add separator
       const separator = document.createElement("hr");
@@ -113,3 +109,4 @@ async function loadProfile() {
 }
 
 loadProfile();
+loadUserItems();
